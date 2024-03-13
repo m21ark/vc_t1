@@ -13,7 +13,7 @@
 ### Description
 
 From a sample of images containing lego pieces, we want to be able to create a program that can detect:
-. The number of lego pieces
+- The number of lego pieces
 - The position of each lego piece in the image
 - The number of different colors
 

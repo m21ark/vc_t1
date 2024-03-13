@@ -13,7 +13,13 @@ def wait(windowName):
         if cv2.getWindowProperty(windowName, cv2.WND_PROP_VISIBLE) < 1:
             break
 
+def resizeImage(image, screen_height, screen_width):
+    # Calculate the scaling factor to fit the image within the screen
+    scaling_factor = min(screen_width / image.shape[1], screen_height / image.shape[0])
 
+    # Resize the image
+    resized_image = cv2.resize(image, None, fx=scaling_factor, fy=scaling_factor)
+    return resized_image
 
 def showImages(images, titles, inWindow=False):
     if inWindow:
@@ -21,11 +27,8 @@ def showImages(images, titles, inWindow=False):
             # Get the dimensions of the screen
             screen_height, screen_width = 1080, 1920
 
-            # Calculate the scaling factor to fit the image within the screen
-            scaling_factor = min(screen_width / images[i].shape[1], screen_height / images[i].shape[0])
-
             # Resize the image
-            resized_image = cv2.resize(images[i], None, fx=scaling_factor, fy=scaling_factor)
+            resized_image = resizeImage(images[i], screen_height, screen_width)
 
             cv2.imshow(titles[i], resized_image)
         
