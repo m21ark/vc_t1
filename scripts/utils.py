@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from IPython.display import display, Image
+import os
 
 def wait(windowName):
     while True:
@@ -13,6 +14,12 @@ def wait(windowName):
         if cv2.getWindowProperty(windowName, cv2.WND_PROP_VISIBLE) < 1:
             break
 
+def loadImage(num, dataDir='imgs'):
+    img = cv2.imread(os.path.join(dataDir, f'{num}.jpg'))
+    resize_ratio = 0.1
+    img = cv2.resize(img, (0, 0), fx = resize_ratio, fy = resize_ratio)
+    return img
+
 def resizeImage(image, screen_height, screen_width):
     # Calculate the scaling factor to fit the image within the screen
     scaling_factor = min(screen_width / image.shape[1], screen_height / image.shape[0])
@@ -20,6 +27,9 @@ def resizeImage(image, screen_height, screen_width):
     # Resize the image
     resized_image = cv2.resize(image, None, fx=scaling_factor, fy=scaling_factor)
     return resized_image
+
+def render(image):
+    showImages([image], ['Image'])
 
 def showImages(images, titles, inWindow=False):
     if inWindow:
