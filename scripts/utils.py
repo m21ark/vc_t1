@@ -64,3 +64,4 @@ def showImages(images, titles, inWindow=False):
             img_bytes = cv2.imencode('.png', image)[1].tobytes()
             # Display the image in the notebook
             display(Image(data=img_bytes))
+

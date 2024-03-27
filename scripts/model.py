@@ -169,7 +169,7 @@ def getLegoColor(lego_img, colorSimilarityThreshold = 1, numClusters = 5):
         
     return most_freq_color
 
-# 6. Evaluate results
+# 6. Evaluate results for lego counting
 def guessPieceCount(imgID, legoNum, showResults = False):
     # Load the csv file as pd
     df = pd.read_csv("scripts/lego_sets.csv")
@@ -179,20 +179,97 @@ def guessPieceCount(imgID, legoNum, showResults = False):
     
     if(showResults):
         if(legoNum == piece_count):
-            print("Guessed correct number!")
+            print("Guessed correct number of legos!")
         else:
             (f"Guessed: {legoNum} | Actual: {piece_count} legos") 
         
     return abs(legoNum - piece_count), piece_count 
 
+# 7.1 Get the bounding box lego color
+def getBBColor(og_img, box, most_common_colors, showResults = False):
+  
+    # Extract the bounding box image from the original image
+    lego_img = getBoundingBoxImage(og_img, box)
+    
+    if showResults:
+        render(lego_img)
+    
+    # Remove the background colors from the bounding box image
+    lego_img = remove_similar_colors(lego_img, most_common_colors, 5, 150)
+    
+    # Get the most common color in the bounding box image, which should be the color of the lego
+    color = getLegoColor(lego_img)
+    
+    # Display the lego image without the background and the lego color
+    if showResults:
+        render(lego_img)
+        display_color_square(color)
+        
+        return color
+    
+# 7.2 Number of Different Lego Colors
+def getNumDifferentColors(og_img, boxes, most_common_colors, threshold = 20, showResults=False):
+    colors = []
+    
+    def colorDistance(color1, color2):
+        return ((color1[0] - color2[0]) ** 2 + (color1[1] - color2[1]) ** 2 + (color1[2] - color2[2]) ** 2) ** 0.5
+
+    for box in boxes:
+        color = getBBColor(og_img, box, most_common_colors, showResults)
+        # Check if the color is similar to any previously recorded color
+        similar_color_found = False
+        for recorded_color in colors:
+            if colorDistance(color, recorded_color) <= threshold:
+                similar_color_found = True
+                break
+        if not similar_color_found:
+            colors.append(color)
+        
+    return len(colors)
+
+
+
+# 7.3 Guess the number of lego colors
+def guessColorCount(imgID, colorNum, showResults = False):
+    # Load the csv file as pd
+    df = pd.read_csv("scripts/lego_sets.csv")
+    
+    # compare legoNum to column piece_count in id row
+    color_arr = df.loc[df['id'] == imgID, 'piece_colors'].values[0]
+    
+    # Count the number of "-" in the string
+    color_count = color_arr.count("-") + 1
+    
+    if(showResults):
+        if(colorNum == color_count):
+            print("Guessed correct number of colors!")
+        else:
+            (f"Guessed: {colorNum} | Actual: {color_count} colors") 
+        
+    return abs(colorNum - color_count), color_count 
 
 # =========================== MODEL ===========================
 
 def model(image_id):
+    
+    # Load the image
     og_img = loadImage(image_id)
+    
+    # Preprocess the image
     segmented_img = kmeansBlur(og_img, 3, 15)
     edges, edge_img = getEdges(segmented_img, 100, 200)
     contour_image, contours = getContours(og_img, edges, 3)
+    
+    # Bounding box evaluation
     num_legos, bounding_box_image, boxes = getBoundingBoxes(og_img, contours, 200, 0.25)
-    delta, piece_count = guessPieceCount(image_id, num_legos)
-    return delta, piece_count, edge_img, bounding_box_image
+    
+    # Piece count evaluation
+    delta_count, piece_count = guessPieceCount(image_id, num_legos)
+    
+    # Color evaluation
+    most_common_colors = getMainColors(og_img, 5, 200)
+    num_colors = getNumDifferentColors(og_img, boxes, most_common_colors)
+    delta_color, color_count = guessColorCount(image_id, num_colors)
+    
+    # Return the results
+    return delta_count, piece_count, delta_color, color_count, edge_img, bounding_box_image
