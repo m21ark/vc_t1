@@ -5,8 +5,8 @@
 |      Name      | Student Number |
 | -------------- | -------------- |
 | João Alves     |   202007614    |
-| Marco André    |   20200****    |
-| Rúben Monteiro |   20200****    |
+| Marco André    |   202004891    |
+| Rúben Monteiro |   202006478    |
 
 ## First Part
 
