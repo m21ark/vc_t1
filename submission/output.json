@@ -1,0 +1,158 @@
+{
+  "results": [
+    {
+      "file_name": "input/0.jpg",
+      "num_colors": 1,
+      "num_detections": 1,
+      "detected_objects": [
+        {
+          "xmin": 121,
+          "ymin": 93,
+          "xmax": 145,
+          "ymax": 238
+        }
+      ]
+    },
+    {
+      "file_name": "input/11.jpg",
+      "num_colors": 8,
+      "num_detections": 9,
+      "detected_objects": [
+        {
+          "xmin": 143,
+          "ymin": 199,
+          "xmax": 214,
+          "ymax": 279
+        },
+        {
+          "xmin": 110,
+          "ymin": 115,
+          "xmax": 160,
+          "ymax": 188
+        },
+        {
+          "xmin": 294,
+          "ymin": 192,
+          "xmax": 350,
+          "ymax": 237
+        },
+        {
+          "xmin": 195,
+          "ymin": 87,
+          "xmax": 238,
+          "ymax": 130
+        },
+        {
+          "xmin": 242,
+          "ymin": 34,
+          "xmax": 285,
+          "ymax": 77
+        },
+        {
+          "xmin": 192,
+          "ymin": 17,
+          "xmax": 238,
+          "ymax": 45
+        },
+        {
+          "xmin": 339,
+          "ymin": 145,
+          "xmax": 374,
+          "ymax": 176
+        },
+        {
+          "xmin": 375,
+          "ymin": 0,
+          "xmax": 416,
+          "ymax": 26
+        },
+        {
+          "xmin": 110,
+          "ymin": 75,
+          "xmax": 149,
+          "ymax": 101
+        }
+      ]
+    },
+    {
+      "file_name": "input/37.jpg",
+      "num_colors": 4,
+      "num_detections": 4,
+      "detected_objects": [
+        {
+          "xmin": 84,
+          "ymin": 312,
+          "xmax": 160,
+          "ymax": 392
+        },
+        {
+          "xmin": 89,
+          "ymin": 78,
+          "xmax": 140,
+          "ymax": 138
+        },
+        {
+          "xmin": 160,
+          "ymin": 171,
+          "xmax": 210,
+          "ymax": 226
+        },
+        {
+          "xmin": 268,
+          "ymin": 121,
+          "xmax": 312,
+          "ymax": 150
+        }
+      ]
+    },
+    {
+      "file_name": "input/39.jpg",
+      "num_colors": 5,
+      "num_detections": 7,
+      "detected_objects": [
+        {
+          "xmin": 205,
+          "ymin": 165,
+          "xmax": 312,
+          "ymax": 269
+        },
+        {
+          "xmin": 126,
+          "ymin": 89,
+          "xmax": 217,
+          "ymax": 196
+        },
+        {
+          "xmin": 0,
+          "ymin": 212,
+          "xmax": 120,
+          "ymax": 291
+        },
+        {
+          "xmin": 84,
+          "ymin": 22,
+          "xmax": 162,
+          "ymax": 105
+        },
+        {
+          "xmin": 245,
+          "ymin": 51,
+          "xmax": 312,
+          "ymax": 132
+        },
+        {
+          "xmin": 154,
+          "ymin": 394,
+          "xmax": 312,
+          "ymax": 416
+        },
+        {
+          "xmin": 164,
+          "ymin": 81,
+          "xmax": 182,
+          "ymax": 95
+        }
+      ]
+    }
+  ]
+}
