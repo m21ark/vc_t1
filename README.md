@@ -13,8 +13,11 @@ This should be done using manual image processing techniques, such as thresholdi
 
 The following images represent the multiple stages of the program running. In the second sequence, there is one more image, due to an extra iteration with a larger blur to reduce the hitbox count.
 
+![image](https://github.com/m21ark/vc/assets/72521279/82a79453-fdd7-43a1-9125-9a9ada8471d4)
 
 ### Color Extraction
+
+![image](https://github.com/m21ark/vc/assets/72521279/b4a9e6cf-9c44-4f4c-9300-8796e364b0ee)
 
 ## Developed Model Algorithm
 
@@ -50,6 +53,8 @@ The following images represent the multiple stages of the program running. In th
 - There are some detection problems related with false positives in shadows and corners or others where the Canny edges for shadows overlap with the legos and big bounding boxes are defined
 - Some light colors (gray, pink) or that are very similar to background (gray, white, transparent) are sometimes not found as pieces when if a bigger blur needs to be applied
 - Pieces that are too close are sometimes considered a single piece (like on the 3rd image) due to their shadows connecting the contours
+
+![image](https://github.com/m21ark/vc/assets/72521279/c568e582-cd2d-4ad6-aa46-53959ba4f5b9)
 
 ## Group Members
 
